@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+  <link href="./bootstrap.min.css" rel="stylesheet">
+  <link href="./signin.css" rel="stylesheet">
+
+  <head>
+    <meta charset="utf-8">
+    <title>yifan_website</title>
+  </head>
+
+  <body>
+
+
+      <form class="form-signin" onsubmit="return checkForm()">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+<script>
+    function checkForm() {
+        var form = document.getElementById('form-signin');
+
+        alert('密码错了。马上跳转。')
+        window.open("./index.html");
+    }
+</script>
+
