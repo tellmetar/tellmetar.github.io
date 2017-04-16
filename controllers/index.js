@@ -1,5 +1,5 @@
 var fn_index = async (ctx, next) => {
-    ctx.response.body = signin.html;
+    ctx.response.body = ./signin.html;
 };
 
 var fn_signin = async (ctx, next) => {
@@ -8,7 +8,7 @@ var fn_signin = async (ctx, next) => {
         password = ctx.request.body.password || '';
     console.log(`signin with name: ${name}, password: ${password}`);
     if (name === 'haha@haha.com' && password === '123456') {
-        ctx.response.body = index.html;
+        ctx.response.body = ./index.html;
     } else {
         ctx.response.body = `<h1>Login failed!</h1>
         <p><a href="/">Try again</a></p>`;
