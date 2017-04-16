@@ -1,22 +1,30 @@
+'use strict'
+
+
 const Koa = require('koa');
 
 const bodyParser = require('koa-bodyparser');
 
-const controller = require('./controller');
+// 注意require('koa-router')返回的是函数:
+const router = require('koa-router')();
+
 
 const app = new Koa();
 
-// log request URL:
-app.use(async (ctx, next) => {
-    console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
-    await next();
+router.post('/signin', async (ctx, next) => {
+    var
+        name = ctx.request.body.name || '',
+        password = ctx.request.body.password || '';
+    console.log(`signin with name: ${name}, password: ${password}`);
+    if (name === 'koa' && password === '12345') {
+        ctx.response.body = `<h1>Welcome, ${name}!</h1>`;
+    } else {
+        ctx.response.body = `<h1>Login failed!</h1>
+        <p><a href="/">Try again</a></p>`;
+    }
 });
 
-// parse request body:
 app.use(bodyParser());
 
-// add controllers:
-app.use(controller());
-
-app.listen(3000);
-console.log('app started at port 3000...');
+// add router middleware:
+app.use(router.routes());
